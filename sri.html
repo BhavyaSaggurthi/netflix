@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta and title tags here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            background-image: url(https://image.slidesdocs.com/responsive-images/background/calculator-education-book-pigment-abstract-white-powerpoint-background_26a96ed9ac__960_540.jpg);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 20;
+            background-color: #21a177;
+        }
+        .calculator {
+            background-color:rgb(172, 166, 166);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 100%;
+            margin-bottom: 60px;
+            padding: 10px;
+            font-size: 30px;
+            border-radius: 5px;
+            border: 5px solid #050404;
+        }
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #0e0d0d;
+            background-color: #050505;
+            cursor: pointer;
+        }
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        #result {
+            width: 100%;
+            margin: 5px;
+            padding: 10px;
+        }
+        input[type="text"] {
+            width: 150px;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type="button"] {
+            width: 100px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: rgb(3, 3, 3);
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 150px;
+            padding: 10px;
+            margin: 5px;
+        }
+        input[type="button"] {
+            width: 100px;
+            padding: 10px;
+            margin: 5px;
+            background-color:rgb(62, 91, 117);
+            color: black;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body >
+    <h1>Calculator.in</h1><br>
+    
+    <div>
+    <button onclick="toggleCalculator('calculator')">Standard Calculator</button>
+    <button onclick="toggleCalculator('scientific-calculator')">Scientific Calculator</button>
+    <button onclick="toggleCalculator('age-calculator')">Age Calculator</button>
+    <button onclick="toggleCalculator('percentage-calculator')">Percentage Calculator</button>
+
+    <!-- Calculator section -->
+    <div class="calculator" id="calculator" style="display: none;">
+        <!-- Calculator HTML code here -->
+        <input type="text" id="result1" placeholder="0" disabled><br>
+        <input type="button" value="7" onclick="appendValue('7')">
+        <input type="button" value="8" onclick="appendValue('8')">
+        <input type="button" value="9" onclick="appendValue('9')">
+        <input type="button" value="/" onclick="appendValue('/')"><br>
+        <input type="button" value="4" onclick="appendValue('4')">
+        <input type="button" value="5" onclick="appendValue('5')">
+        <input type="button" value="6" onclick="appendValue('6')">
+        <input type="button" value="*" onclick="appendValue('*')"><br>
+        <input type="button" value="1" onclick="appendValue('1')">
+        <input type="button" value="2" onclick="appendValue('2')">
+        <input type="button" value="3" onclick="appendValue('3')">
+        <input type="button" value="-" onclick="appendValue('-')"><br>
+        <input type="button" value="0" onclick="appendValue('0')">
+        <input type="button" value="." onclick="appendValue('.')">
+        <input type="button" value="C" onclick="clearValue()">
+        <input type="button" value="+" onclick="appendValue('+')"><br>
+        <input type="button" value="=" onclick="calculatestandard()">
+    </div>
+
+    <!-- Scientific Calculator section -->
+    <div class="scientific-calculator" id="scientific-calculator" style="display: none;">
+        <!-- Scientific Calculator HTML code here -->
+        <input type="text" id="result2" placeholder="0" disabled><br>
+        <input type="button" value="sin" onclick="append('Math.sin(')">
+        <input type="button" value="cos" onclick="append('Math.cos(')">
+        <input type="button" value="tan" onclick="append('Math.tan(')">
+        <input type="button" value="log" onclick="append('Math.log10(')"><br>
+        <input type="button" value="exp" onclick="append('Math.exp(')">
+        <input type="button" value="sqrt" onclick="append('Math.sqrt(')">
+        <input type="button" value="(" onclick="append('(')">
+        <input type="button" value=")" onclick="append(')')"><br>
+        <input type="button" value="1" onclick="append('1')">
+        <input type="button" value="2" onclick="append('2')">
+        <input type="button" value="3" onclick="append('3')">
+        <input type="button" value="+" onclick="append('+')"><br>
+        <input type="button" value="4" onclick="append('4')">
+        <input type="button" value="5" onclick="append('5')">
+        <input type="button" value="6" onclick="append('6')">
+        <input type="button" value="-" onclick="append('-')"><br>
+        <input type="button" value="7" onclick="append('7')">
+        <input type="button" value="8" onclick="append('8')">
+        <input type="button" value="9" onclick="append('9')">
+        <input type="button" value="*" onclick="append('*')"><br>
+        <input type="button" value="." onclick="append('.')">
+        <input type="button" value="0" onclick="append('0')">
+        <input type="button" value="Clear" onclick="clearResult()">
+        <input type="button" value="/" onclick="append('/')"><br>
+        <input type="button" value="=" onclick="calculate()">
+    </div>
+
+    <!-- Age Calculator section -->
+    <div class="age-calculator" id="age-calculator" style="display: none;">
+        <!-- Age Calculator HTML code here -->
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" placeholder="YYYY-MM-DD"><br>
+        <input type="button" value="Calculate Age" onclick="calculateAge()">
+        <p id="result3"></p>
+    </div>
+
+    <!-- Percentage Calculator section -->
+    <div class="percentage-calculator" id="percentage-calculator" style="display: none;">
+        <!-- Percentage Calculator HTML code here -->
+        <label for="number">Number:</label>
+        <input type="text" id="number" placeholder="Enter number"><br>
+        <label for="percentage">Percentage:</label>
+        <input type="text" id="percentage" placeholder="Enter percentage"><br>
+        <input type="button" value="Calculate" onclick="calculatePercentage()">
+        <p id="result4"></p>
+    </div>
+    <script>
+        function toggleCalculator(calculatorId) {
+            var calculator = document.getElementById(calculatorId);
+            if (calculator.style.display === "none") {
+                calculator.style.display = "block";
+            } else {
+                calculator.style.display = "none";
+            }
+        }
+    </script>
+     <script>
+        function appendValue(val) {
+            document.getElementById('result1').value += val;
+        }
+
+        function clearValue() {
+            document.getElementById('result1').value = '';
+        }
+
+        function calculatestandard() {
+            try {
+                var result = eval(document.getElementById('result1').value);
+                document.getElementById('result1').value = result;
+            } catch (e) {
+                document.getElementById('result1').value = 'Error';
+            }
+        }
+    </script>
+
+    <script>
+        function append(value) {
+            document.getElementById('result2').value += value;
+        }
+
+        function clearResult() {
+            document.getElementById('result2').value = '';
+        }
+
+        function calculate() {
+            try {
+                var expression = document.getElementById('result2').value;
+                var result = eval(expression);
+                document.getElementById('result2').value = result;
+            } catch (e) {
+                document.getElementById('result2').value = 'Error';
+            }
+        }
+    </script>
+
+    <script>
+        function calculateAge() {
+            var dob = document.getElementById('dob').value;
+            var dobDate = new Date(dob);
+            var todayDate = new Date();
+            if (isNaN(dobDate)) {
+                document.getElementById('result3').innerText = "Invalid Date of Birth";
+            } else {
+                var ageTime = todayDate - dobDate;
+                var ageDate = new Date(ageTime);
+                var years = ageDate.getUTCFullYear() - 1970;
+                var months = ageDate.getUTCMonth();
+                var days = ageDate.getUTCDate() - 1;
+                document.getElementById('result3').innerText = "Age: " + years + " years, " + months + " months, " + days + " days";
+            }
+        }
+    </script>
+
+    <script>
+        function calculatePercentage() {
+            var number = parseFloat(document.getElementById('number').value);
+            var percentage = parseFloat(document.getElementById('percentage').value);
+            if (isNaN(number) || isNaN(percentage)) {
+                document.getElementById('result4').innerText = "Please enter valid numbers.";
+            } else {
+                var result = (number * percentage) / 100;
+                document.getElementById('result4').innerText = "Result: " + result;
+            }
+        }
+    </script>
+
+</div>
+</body>
+</html>
